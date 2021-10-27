@@ -19,19 +19,18 @@
     }
 
     .cart-items::-webkit-scrollbar {
-      width: 12px;
+      width: 10px;
     }
     
-    .cart-items::-webkit-scrollbar-thumb {
+    .cart-items::-webkit-scrollbar-track {
       -webkit-border-radius: 5px;
       border-radius: 5px;
       background: rgba(80, 80, 80, 1);
     }
-    
   
     button {
       margin-top: auto;
     }
-  }
+}
 
- 
+  
