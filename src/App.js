@@ -13,32 +13,15 @@ import CheckoutPage from './pages/checkout/checkout.component';
 
 import { selectCurrentUser } from './redux/user/user.selectors';
 
+import { checkUserSession } from './redux/user/user.actions';
+
 class App extends React.Component {
   unsubscrubeFromAuth = null;
 
   componentDidMount() {
+    const { checkUserSession } = this.props;
+    checkUserSession();
   }
-
-    // this.unsubscribeFromAuth = auth.onAuthStateChanged(async userAuth => {
-    //   if (userAuth) {
-    //     const userRef = await createUserProfileDocument(userAuth);
-
-    //     userRef.onSnapshot(snapShot => {
-    //       setCurrentUser({
-    //           id: snapShot.id,
-    //           ...snapShot.data()
-    //       });
-    //     });
-    //   }
-      
-      //setCurrentUser(userAuth);
-      /*addCollectionAndDocuments(
-        'collections', 
-        collectionsArray.map(({ title, items }) => ({ title, items  }))
-      ); */ //moving shop data to firebase
-    //});
-  
-
 
   componentWillUnmount() {
     this.unsubscrubeFromAuth();
@@ -71,7 +54,10 @@ class App extends React.Component {
 
 const mapStateToProps = createStructuredSelector({
   currentUser: selectCurrentUser 
-  //collectionsArray: selectCollectionsForPreview //moving shop data to firebase
 });
 
-export default connect(mapStateToProps)(App);
+const mapDispatchToProps = dispatch => ({
+  checkUserSession: () => dispatch(checkUserSession())
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);
